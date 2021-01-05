@@ -1,0 +1,4 @@
+google react redux
+npm install react-redux 
+npm install redux
+npm i redux-thunk

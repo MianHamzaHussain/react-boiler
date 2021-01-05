@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import {connect} from 'react-redux';
+import {setData} from './store/action'
+import { nativeTouchData } from 'react-dom/test-utils';
+class App extends React.Component{
+  render(){
+    console.log(this.props);
+    return(
+    <div>
+<h1> Welcome back</h1>
+<button onClick={()=>this.props.sdata("data through function")}>hello</button>
     </div>
-  );
+    )
+  }
 }
 
-export default App;
+
+const mapStateToProps = (state /*, ownProps*/) => {
+  return {
+    appname: state.app.name,
+    name: state.auth.name,
+    email: state.auth.email
+    
+  }
+}
+const mapDispatchToProps = (dispatch)=>({
+  sdata: (data)=>dispatch(setData(data))
+})
+export default connect(mapStateToProps,mapDispatchToProps) (App);
